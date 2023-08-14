@@ -12,7 +12,10 @@ const app = express();
 //connect to DB
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB);
+    await mongoose.connect(process.env.MONGODB, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("Connected To MongoDB.");
   } catch (error) {
     throw error;
