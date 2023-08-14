@@ -6,8 +6,13 @@ const usersRoute = require("./routes/users.js");
 const hotelsRoute = require("./routes/hotels.js");
 const roomsRoute = require("./routes/rooms.js");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const app = express();
+
+// Allow requests from your Netlify domain
+const netlifyDomain = "https://https://noor-booking.netlify.app/";
+app.use(cors({ origin: netlifyDomain }));
 
 //connect to DB
 const connect = async () => {
