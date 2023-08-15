@@ -11,7 +11,7 @@ const cors = require("cors");
 const app = express();
 
 // Allow requests from your Netlify domain
-const netlifyDomain = "https://https://noor-booking.netlify.app";
+const netlifyDomain = "https://noor-booking.netlify.app";
 app.use(cors({ origin: netlifyDomain }));
 
 //connect to DB
