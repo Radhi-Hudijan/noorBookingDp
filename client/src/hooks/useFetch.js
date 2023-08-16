@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 const useFetch = (url) => {
   const [data, setData] = useState([]);
@@ -11,6 +13,7 @@ const useFetch = (url) => {
       setLoading(true);
 
       try {
+        console.log(process.env.Heroku + url);
         const res = await axios.get(process.env.Heroku + url);
 
         setData(res.data);
