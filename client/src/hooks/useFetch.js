@@ -13,7 +13,6 @@ const useFetch = (url) => {
       setLoading(true);
 
       try {
-        console.log(process.env.Heroku + url);
         const res = await axios.get(process.env.Heroku + url);
 
         setData(res.data);
