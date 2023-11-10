@@ -2,7 +2,7 @@ import "./single.scss";
 import Sidebar from "../../component/sidebar/Sidebar";
 import Navbar from "../../component/navbar/Navbar";
 import NormalChart from "../../component/normalChart/NormalChart";
-import Table from "../../component/table/List";
+import List from "../../component/table/List";
 
 const Single = () => {
   return (
@@ -47,7 +47,7 @@ const Single = () => {
         </div>
         <div className="bottom">
           <h1 className="title">Last Transaction</h1>
-          <Table />
+          <List />
         </div>
       </div>
     </div>
