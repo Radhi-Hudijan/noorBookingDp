@@ -19,6 +19,7 @@ const New = ({ inputs, title }) => {
           <div className="left">
             <img
               src={
+                // creating the image file link 
                 file
                   ? URL.createObjectURL(file)
                   : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
