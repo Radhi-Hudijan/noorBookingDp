@@ -29,3 +29,25 @@
     }
   }
 }
+
+@media screen and (max-width: 768px){
+  .home {
+      flex-direction: column;
+  
+      .homeContainer {
+        flex: 1;
+  
+        .widgets,
+        .charts {
+          flex-direction: column;
+          padding: 20px;
+          gap: 20px;
+        }
+  
+        .charts {
+          padding: 5px 20px;
+        }
+      }
+}
+
+}

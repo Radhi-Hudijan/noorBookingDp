@@ -12,7 +12,6 @@ const Datatable = () => {
     const newData = data.filter((row) => {
          return row.id !== id      
     })
-
     setData(newData);
   }
   

@@ -86,3 +86,35 @@
     }
   }
 }
+
+@media screen and (max-width:768px){
+  
+  .single {
+      
+      .singleContainer {
+        flex: 1;
+  
+        .top {
+          flex-direction: column;
+  
+          .left {
+            
+            .editButton {
+              padding: 10px;
+              font-size: 18px;
+            }
+  
+            .item {
+              justify-content: space-evenly;
+              gap: 20px;
+  
+              .itemImg {
+                width: 120px;
+                height: 120px;
+              }
+            }
+          }
+        }
+      }
+    }
+}
