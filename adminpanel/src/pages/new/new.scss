@@ -75,3 +75,10 @@
     }
   }
 }
+
+@media screen and (max-width:789px) {
+
+  .new{
+    flex-direction: column;
+  }
+}

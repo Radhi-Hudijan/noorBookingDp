@@ -9,6 +9,7 @@
 
 @media screen and (max-width: 768px) {
   .list {  
+    flex-direction: column;
       .listContainer {
         width: 100vw;
       }

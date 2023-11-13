@@ -88,17 +88,17 @@
 
 @media screen and (max-width: 768px) {
 .sidebar {
-    flex: 1;
     height: 20px !important;
 
     .center {
       ul{
         display: flex;
         justify-content: center;
-
+        flex-wrap: wrap;
+        
         .item{
-          margin-right: 20px;
-          padding-left: 5px;
+          margin-right: 10px;
+          padding: 5px 10px;
           border-left: 0.5px solid rgb(230, 227, 227) ;
 
           &:first-child{
