@@ -32,64 +32,78 @@ const Sidebar = () => {
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
-          <Link to='/' style={{ 'textDecoration': 'none' }}>
-            <li>
-              <DashboardIcon className="icon" />
-              <span> Dashboard</span>
-            </li>
-          </Link>
-          <p className="title">LIST</p>
-          <Link to='/users' style={{ 'textDecoration': 'none' }}>
-             <li>
-               <PersonIcon className="icon" />
-               <span> Users</span>
-             </li>
-          </Link>
+          <div className='item'>
+             <p className="title">MAIN</p>
+             <Link to='/' style={{ 'textDecoration': 'none' }}>
+               <li>
+                 <DashboardIcon className="icon" />
+                 <span> Dashboard</span>
+               </li>
+             </Link>
+          </div>
 
-          <Link to='/products' style={{ 'textDecoration': 'none' }}>
-             <li>
-               <ProductionQuantityLimitsIcon className="icon" />
-               <span> Products</span>
-             </li>
-          </Link>
+          <div className='item'>
+               <p className="title">LIST</p>
+               <Link to='/users' style={{ 'textDecoration': 'none' }}>
+                  <li>
+                    <PersonIcon className="icon" />
+                    <span> Users</span>
+                  </li>
+               </Link>
+     
+               <Link to='/products' style={{ 'textDecoration': 'none' }}>
+                  <li>
+                    <ProductionQuantityLimitsIcon className="icon" />
+                    <span> Products</span>
+                  </li>
+               </Link>
+     
+               <li>
+                 <LocalShippingIcon className="icon" />
+                 <span> Delivery</span>
+               </li>
+          </div>
 
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span> Delivery</span>
-          </li>
+          <div className='item'>
+               <p className="title">USEFUL</p>
+               <li>
+                 <AssessmentIcon className="icon" />
+                 <span> Stats</span>
+               </li>
+               <li>
+                 <CircleNotificationsIcon className="icon" />
+                 <span> Notification</span>
+               </li>
+          </div>
 
-          <p className="title">USEFUL</p>
-          <li>
-            <AssessmentIcon className="icon" />
-            <span> Stats</span>
-          </li>
-          <li>
-            <CircleNotificationsIcon className="icon" />
-            <span> Notification</span>
-          </li>
-          <p className="title">SERVICE</p>
-          <li>
-            <SystemSecurityUpdateGoodIcon className="icon" />
-            <span> System Health</span>
-          </li>
-          <li>
-            <HistoryIcon className="icon" />
-            <span> Logs</span>
-          </li>
-          <li>
-            <SettingsIcon className="icon" />
-            <span> Setting</span>
-          </li>
-          <p className="title">USER</p>
-          <li>
-            <SettingsAccessibilityIcon className="icon" />
-            <span> Profile</span>
-          </li>
-          <li>
-            <LogoutIcon className="icon" />
-            <span> Logout</span>
-          </li>
+          <div className='item'>
+               <p className="title">SERVICE</p>
+               <li>
+                 <SystemSecurityUpdateGoodIcon className="icon" />
+                 <span> System Health</span>
+               </li>
+               <li>
+                 <HistoryIcon className="icon" />
+                 <span> Logs</span>
+               </li>
+               <li>
+                 <SettingsIcon className="icon" />
+                 <span> Setting</span>
+               </li>
+          </div>
+
+          <div className='item'>
+              <p className="title">USER</p>
+              <li>
+                <SettingsAccessibilityIcon className="icon" />
+                <span> Profile</span>
+              </li>
+              <li>
+                <LogoutIcon className="icon" />
+                <span> Logout</span>
+              </li>
+           </div>
+                    
         </ul>
       </div>
       <div className="bottom">

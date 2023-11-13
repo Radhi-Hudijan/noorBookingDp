@@ -1,7 +1,7 @@
 .sidebar {
   flex: 1;
   border-right: 0.5px solid rgb(230, 227, 227);
-  min-height: 100vh;
+  //min-height: 100vh;
   background-color: white;
   .top {
     height: 50px;
@@ -87,7 +87,35 @@
 }
 
 @media screen and (max-width: 768px) {
-  .sidebar{
-    display: none;
-  }
-}
+.sidebar {
+    flex: 1;
+    height: 20px !important;
+
+    .center {
+      ul{
+        display: flex;
+        justify-content: center;
+
+        .item{
+          margin-right: 20px;
+          padding-left: 5px;
+          border-left: 0.5px solid rgb(230, 227, 227) ;
+
+          &:first-child{
+            border-left: none;
+          }
+
+          .title{
+            font-size: 15px;
+          }
+        }
+      }
+    }
+    
+       .bottom {
+            justify-content: center;
+          }
+      }
+    } 
+  
+
