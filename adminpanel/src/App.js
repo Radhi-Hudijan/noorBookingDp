@@ -8,10 +8,17 @@ import { productInputs, userInputs } from "./formSource";
 
 //import the global style file
 import './style/dark.scss'
+
+//import the context API
+import { useContext } from "react";
+import { DarkModeContext } from "./context/darkModeContext";
  
 function App() {
+
+  const { darkMode }= useContext(DarkModeContext)
+
   return (
-    <div className="app dark">
+    <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
           <Route path="/">
