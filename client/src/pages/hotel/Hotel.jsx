@@ -27,8 +27,11 @@ const Hotel = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
+  //fetch the data using the hotel id
   const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
 
+
+// uses the data from the SearchContext
   const { dates, options } = useContext(SearchContext);
 
   // import user details
