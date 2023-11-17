@@ -27,7 +27,7 @@ const Hotel = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  //fetch the data using the hotel id
+//fetch the data using the hotel id
   const { data, loading, error } = useFetch(`/api/hotels/find/${id}`);
 
 
