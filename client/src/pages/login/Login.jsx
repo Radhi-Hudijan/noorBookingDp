@@ -13,14 +13,19 @@ const Login = () => {
   });
 
   const { loading, error, dispatch } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
+  // to het the values of the inputs together
   const handleChange = (e) => {
     setCredential((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
   const handleClick = async (e) => {
+
+    // to prevent page refresh
     e.preventDefault();
+
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("api/auth/login", credential);
