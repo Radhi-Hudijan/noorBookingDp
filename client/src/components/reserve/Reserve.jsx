@@ -11,6 +11,8 @@ import style from "./Reserve.module.css";
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
   const { data, loading, error } = useFetch(`/api/hotels/rooms/${hotelId}`);
+
+
   const { dates } = useContext(SearchContext);
 
   // getting the dates selected from a range
@@ -31,6 +33,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     return list;
   };
 
+  //use the function above to get the booked date list using the search context 
   const allDates = getDatesInRange(dates[0].startDate, dates[0].endDate);
 
   //check if the room number is available
@@ -42,6 +45,7 @@ const Reserve = ({ setOpen, hotelId }) => {
     return !isFound;
   };
 
+  
   const handleSelect = (e) => {
     const checked = e.target.checked;
     const value = e.target.value;
@@ -95,7 +99,7 @@ const Reserve = ({ setOpen, hotelId }) => {
                 <div className={style.rPrice}>{item.price}</div>
               </div>
 
-              {/* show room numbers from the same room name */}
+              {/* show room numbers for the same room name */}
               <div className={style.rSelectRooms}>
                 {item.roomNumbers.map((roomNumber) => (
                   <div className={style.room}>
