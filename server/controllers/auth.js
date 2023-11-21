@@ -44,7 +44,7 @@ const login = async (req, res, next) => {
     res
       .status(200)
       .cookie("access_token", token, { httpOnly: true })
-      .json({ ...otherDetails });
+      .json({ details:{...otherDetails},isAdmin });
   } catch (error) {
     next(error);
   }

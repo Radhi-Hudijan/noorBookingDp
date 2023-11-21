@@ -29,8 +29,14 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post("api/auth/login", credential);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
-      navigate("/");
+
+      //check if the user logged is admin
+      if (res.data.isAdmin) {
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+        navigate("/");
+      } else {
+        dispatch({ type: "LOGIN_FAILURE", payload:{ message : " You are not allowed"} });
+      }
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
     }
