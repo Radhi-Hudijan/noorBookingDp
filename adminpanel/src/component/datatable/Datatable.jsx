@@ -1,18 +1,39 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../dataTableSource";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+import axios from "axios";
 
 const Datatable = () => {
 
-  const [data, setData] = useState(userRows)
+  // get the page type from the location users / hotels ..etc
+  const location = useLocation()
+  const path = location.pathname.split("/")[1]
+  
+// data list
+  const [list, setList] = useState([])
 
-  const handleDelete = (id) => { 
-    const newData = data.filter((row) => {
-         return row.id !== id      
+  // Fetch all users from the server
+  const { data, loading, error } = useFetch(`/api/${path}`)
+  
+  //update the list whit the data fetched
+   useEffect(() => {
+     setList(data)
+   }, [data])
+
+  const handleDelete = async (id) => { 
+
+    try {
+      await axios.delete(`/api/${path}/${id}`)
+      const newList = list.filter((row) => {
+         return row._id !== id      
     })
-    setData(newData);
+      setList(newList);
+      
+    } catch (error) {}
+    
   }
   
   const actionColumn = [
@@ -29,7 +50,7 @@ const Datatable = () => {
              <div className="viewButton">View</div>
             </Link>
             <div className="deleteButton" onClick={() => {
-              handleDelete(params.row.id)
+              handleDelete(params.row._id)
              }}>Delete</div>
           </div>
         );
@@ -48,7 +69,7 @@ const Datatable = () => {
       </div>
       <DataGrid
         className="dataGrid"
-        rows={data}
+        rows={list}
         columns={userColumns.concat(actionColumn)}
         initialState={{
           pagination: {
@@ -57,6 +78,7 @@ const Datatable = () => {
         }} 
         pageSizeOptions={[5, 10]}
         checkboxSelection
+        getRowId={row => row._id}
       />
     </div>
   );
