@@ -51,17 +51,19 @@ const Sidebar = () => {
                   </li>
                </Link>
      
-               <Link to='/products' style={{ 'textDecoration': 'none' }}>
+               <Link to='/hotels' style={{ 'textDecoration': 'none' }}>
                   <li>
                     <ProductionQuantityLimitsIcon className="icon" />
-                    <span> Products</span>
+                    <span> Hotels</span>
                   </li>
-               </Link>
-     
+            </Link>
+            
+            <Link to='/rooms' style={{ 'textDecoration': 'none' }}>
                <li>
                  <LocalShippingIcon className="icon" />
-                 <span> Delivery</span>
+                 <span> Rooms</span>
                </li>
+            </Link>
           </div>
 
           <div className='item'>
