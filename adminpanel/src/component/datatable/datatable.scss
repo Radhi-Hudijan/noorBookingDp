@@ -2,7 +2,7 @@
   height: 90vh;
   padding: 20px;
 
-  .dataTableTitle{
+  .dataTableTitle {
     width: 100%;
     font-size: 24px;
     color: gray;
@@ -78,26 +78,23 @@
   }
 }
 
-@media screen and (max-width :768px) {
-  
+@media screen and (max-width: 768px) {
   .datatable {
-  
-      .dataTableTitle {
-        font-size: 28px;
-        
-        .link {
-          font-size: 18px;
-        }
-      }
-  
-      .dataGrid{
-        flex: 1;
-      }
-      .cellWithImg {
-  
-        .cellImg {
-          margin-right: 20px;
-        }
+    .dataTableTitle {
+      font-size: 28px;
+
+      .link {
+        font-size: 18px;
       }
     }
+
+    .dataGrid {
+      flex: 1;
+    }
+    .cellWithImg {
+      .cellImg {
+        margin-right: 20px;
+      }
+    }
+  }
 }

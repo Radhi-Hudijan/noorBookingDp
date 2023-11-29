@@ -1,33 +1,34 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import List from "./pages/list/List";
-import Single from "./pages/single/Single";
-import New from "./pages/new/New";
-import { productInputs, userInputs } from "./formSource";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import Home from "./pages/home/Home"
+import Login from "./pages/login/Login"
+import List from "./pages/list/List"
+import Single from "./pages/single/Single"
+import New from "./pages/new/New"
+import { productInputs, userInputs } from "./formSource"
 
 //import the global style file
-import "./style/dark.scss";
+import "./style/dark.scss"
 
 //import the context API
-import { useContext } from "react";
-import { DarkModeContext } from "./context/darkModeContext";
-import { AuthContext } from "./context/AuthContext";
-import { hotelColumns, userColumns } from "./dataTableSource";
-import NewHotel from "./pages/newHotel/NewHotel";
+import { useContext } from "react"
+import { DarkModeContext } from "./context/darkModeContext"
+import { AuthContext } from "./context/AuthContext"
+import { hotelColumns, roomColumns, userColumns } from "./dataTableSource"
+import NewHotel from "./pages/newHotel/NewHotel"
+import NewRoom from "./pages/newRoom/NewRoom"
 
 function App() {
-  const { darkMode } = useContext(DarkModeContext);
+  const { darkMode } = useContext(DarkModeContext)
 
   // create a protected route to wrap other routes with it and check if user is admin
   const ProtectedRoute = ({ children }) => {
-    const { user } = useContext(AuthContext);
+    const { user } = useContext(AuthContext)
 
     if (!user) {
-      return <Navigate to="/login" />;
+      return <Navigate to="/login" />
     }
-    return children;
-  };
+    return children
+  }
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
@@ -102,11 +103,40 @@ function App() {
                 }
               />
             </Route>
+
+            <Route path="rooms">
+              <Route
+                index
+                element={
+                  <ProtectedRoute>
+                    <List columns={roomColumns} />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path=":productId"
+                element={
+                  <ProtectedRoute>
+                    <Single />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="new"
+                element={
+                  <ProtectedRoute>
+                    <NewRoom />
+                  </ProtectedRoute>
+                }
+              />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

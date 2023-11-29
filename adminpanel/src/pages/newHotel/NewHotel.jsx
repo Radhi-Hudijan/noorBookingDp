@@ -64,7 +64,9 @@ const NewHotel = () => {
       }
 
       await axios.post("/api/hotels", newHotel)
-    } catch (error) {}
+    } catch (error) {
+      alert(error)
+    }
   }
 
   return (

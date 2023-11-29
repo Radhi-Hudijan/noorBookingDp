@@ -32,12 +32,13 @@
 
       .right {
         flex: 2;
+        padding: 0 20px;
 
         form {
           display: flex;
           flex-wrap: wrap;
           gap: 30px;
-          justify-content: space-around;
+          justify-content: space-between;
 
           .formInput {
             width: 40%;
@@ -76,9 +77,8 @@
   }
 }
 
-@media screen and (max-width:789px) {
-
-  .new{
+@media screen and (max-width: 789px) {
+  .new {
     flex-direction: column;
   }
 }

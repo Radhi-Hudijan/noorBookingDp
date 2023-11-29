@@ -1,65 +1,109 @@
-import { useState } from "react";
-import "./newRoom.scss";
-import Sidebar from "../../component/sidebar/Sidebar";
-import Navbar from "../../component/navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+import { useState } from "react"
+import "./newRoom.scss"
+import Sidebar from "../../component/sidebar/Sidebar"
+import Navbar from "../../component/navbar/Navbar"
+import { roomInputs } from "../../formSource"
+import useFetch from "../../hooks/useFetch"
+import axios from "axios"
 
-const NewRoom = ({ inputs, title }) => {
-  const [file, setFile] = useState("");
+const NewRoom = () => {
+  const [info, setInfo] = useState({})
 
+  // store rooms id
+  const [hotelId, setHotelId] = useState(undefined)
+
+  //store rooms from textArea
+  const [rooms, setRooms] = useState([])
+
+  //To fetch all hotels
+  const { data, loading, error } = useFetch("/api/hotels")
+
+  // To handle input updates
+  const handleInputChange = (e) => {
+    setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }))
+  }
+
+  //To handle hotel selection
+  const handleSelect = (e) => {
+    setHotelId(e.target.value)
+  }
+
+  const handleClick = async (e) => {
+    e.preventDefault()
+
+    //split the room numbers from the textArea and covert to Array
+    const roomNumbers = rooms.split(",").map((roomNo) => {
+      return { number: roomNo }
+    })
+
+    try {
+      const newRoom = {
+        ...info,
+        roomNumbers,
+      }
+      await axios.post(`/api/rooms/${hotelId}`, newRoom)
+    } catch (error) {
+      alert(error)
+    }
+  }
   return (
     <div className="new">
       <Sidebar />
-      
+
       <div className="newContainer">
         <Navbar />
         <div className="top">
-          <h1>{title}</h1>
+          <h1>Add New Room</h1>
         </div>
         <div className="bottom">
-          <div className="left">
-            <img
-              src={
-                // creating the image file link 
-                file
-                  ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-              }
-              alt=""
-            />
-          </div>
           <div className="right">
             <form>
-              <div className="formInput">
-                <label htmlFor="file">
-                  Image: <DriveFolderUploadOutlinedIcon className="icon" />{" "}
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  style={{ display: "None" }}
-                  onChange={(e) => {
-                    setFile(e.target.files[0]);
-                  }}
-                />
-              </div>
-
-              {inputs.map((input) => {
+              {roomInputs.map((input) => {
                 return (
                   <div className="formInput" key={input.id}>
                     <label> {input.label} </label>
-                    <input type={input.type} placeholder={input.placeholder} />
+                    <input
+                      id={input.id}
+                      type={input.type}
+                      placeholder={input.placeholder}
+                      onChange={handleInputChange}
+                    />
                   </div>
-                );
+                )
               })}
 
-              <button>Send </button>
+              <div className="formInput">
+                <label onChange={handleInputChange}> Room Numbers </label>
+                <textarea
+                  placeholder="Give comma between room numbers"
+                  onChange={(e) => {
+                    setRooms(e.target.value)
+                  }}
+                ></textarea>
+              </div>
+
+              <div className="formInput">
+                <label> Choose Hotel </label>
+                <select id="hotelId" onChange={handleSelect}>
+                  {loading
+                    ? " Loading"
+                    : data &&
+                      data.map((hotel) => {
+                        return (
+                          <option key={hotel._id} value={hotel._id}>
+                            {hotel.name}
+                          </option>
+                        )
+                      })}
+                </select>
+              </div>
+              <button onClick={handleClick}>Send </button>
             </form>
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NewRoom;
+export default NewRoom
