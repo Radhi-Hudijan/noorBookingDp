@@ -60,7 +60,14 @@
               border-bottom: 1px solid gray;
             }
           }
+          .selectRooms {
+            width: 100%;
 
+            select {
+              width: 100%;
+              padding: 10px;
+            }
+          }
           button {
             width: 180px;
             padding: 10px;
@@ -77,9 +84,8 @@
   }
 }
 
-@media screen and (max-width:789px) {
-
-  .new{
+@media screen and (max-width: 789px) {
+  .new {
     flex-direction: column;
   }
 }
