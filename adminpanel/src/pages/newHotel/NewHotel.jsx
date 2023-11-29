@@ -5,6 +5,7 @@ import Navbar from "../../component/navbar/Navbar"
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined"
 import { hotelInputs } from "../../formSource"
 import useFetch from "../../hooks/useFetch"
+import axios from "axios"
 
 const NewHotel = () => {
   const [files, setFiles] = useState("")
@@ -28,7 +29,43 @@ const NewHotel = () => {
     setRooms(value)
   }
 
-  console.log(rooms)
+  //To handle send button click
+  const handelClick = async (e) => {
+    e.preventDefault()
+
+    try {
+      const list = await Promise.all(
+        Object.values(files).map(async (file) => {
+          // transform file in the state above to form data
+          const data = new FormData()
+          data.append("file", file)
+
+          //also append the upload preset to the formData
+          data.append("upload_preset", "upload")
+
+          //use cloudinary to upload files and photos
+
+          const uploadRes = await axios.post(
+            "https://api.cloudinary.com/v1_1/dk8grjbrm/image/upload",
+            data
+          )
+          const { url } = uploadRes.data
+
+          return url
+        })
+      )
+
+      // Create new hotel
+
+      const newHotel = {
+        ...info,
+        rooms,
+        photos: list,
+      }
+
+      await axios.post("/api/hotels", newHotel)
+    } catch (error) {}
+  }
 
   return (
     <div className="new">
@@ -110,7 +147,7 @@ const NewHotel = () => {
                 </select>
               </div>
 
-              <button>Send </button>
+              <button onClick={handelClick}>Send </button>
             </form>
           </div>
         </div>
